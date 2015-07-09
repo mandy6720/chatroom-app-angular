@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="chatRoom">
+<head>
+	<title>L33t H4x0r Ch4tr00m</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+	<div id="appContainer">
+	<div id="header">
+		<img src="img/iron-yard-logo.png" id="tiylogo"/>
+		<span>L33t H4x0r Ch4tr00m</span>
+	</div>
+
+		<div id="userContainer" ng-controller="UserController">
+			<div class="fieldContainer">
+				<span>Username: </span><input type="text" ng-model="username" /><br />
+			</div>
+			<div class="fieldContainer">
+				<span>Full Name: </span><input type="text" ng-model="fullname" /><br />
+			</div>
+			<div class="fieldContainer">
+				<span>Status: </span><input type="text" ng-model="status" /><br />
+			</div>
+			<div class="fieldContainer">
+				<button id="submitButton" ng-click="addUser()">Add User</button>
+			</div>
+			<div class="fieldContainer">
+				<div ng-repeat="user in users" class="userList"><strong>{{user.username}}</strong>  ({{user.fullname}})</div>
+			</div>
+		</div>
+
+		<div id="messageContainer" ng-controller="MessageController">
+			<div ng-repeat="message in messages | orderBy:'-timestamp'"><span>{{ message.timestamp }}</span> <span>{{message.user_id}}:</span> {{message.text}}</div>
+		</div>
+<!--
+		<div ng-controller="UserController">
+			<select ng-model="selectedUser">
+				<option ng-repeat="user in users" ng-selected="{{user.username == selectedUser.username}}">{{user.username}}</option>
+			</select>
+		</div>
+
+
+		-->
+
+		<div id="inputContainer" ng-controller="InputController">
+			<input type="text" ng-model="messageText" id="messageInput">
+			<button id="sendTextButton" ng-click="sendMessage()">Send</button>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="libs/moment.js"></script>
+	<script type="text/javascript" src="libs/underscore.js"></script>
+	<script type="text/javascript" src="libs/angular.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+
+</body>
+</html>
